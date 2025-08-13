@@ -6,7 +6,6 @@
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -15,56 +14,56 @@ datasource db {
 }
 
 // Tabela usuario
-model Usuario{
-  id Int @id @default(autoincrement())
-  nome String
-  email String @unique
-  senha String
-  cargo String
+model Usuario {
+  id         Int          @id @default(autoincrement())
+  nome       String
+  email      String       @unique
+  senha      String
+  cargo      String
+  Prontuario Prontuario[]
 }
 
-// Tabela prontuario
-model Prontuario{
-  id Int @id @default(autoincrement())
-  descricao String
-  data DateTime
+model Prontuario {
+  id                    Int      @id @default(autoincrement())
+  descricao             String
+  data                  DateTime
   medico_responsavel_id Int
-  paciente_id Int
-  paciente_coluna Paciente @relation(fields: [paciente_id], references [id])
-  medico_coluna Usuario @relation(fields [medico_responsavel_id], references[id])
+  paciente_id           Int
+  paciente              Paciente @relation(fields: [paciente_id], references: [id])
+  usuario               Usuario  @relation(fields: [medico_responsavel_id], references: [id])
 }
 
-// Tabela consulta
-model Consulta{
-  id Int @id @default(autoincrement())
-  motivo_consulta String
-  data_consulta DateTime
-  observacoes String
+model Consulta {
+  id                    Int      @id @default(autoincrement())
+  motivo                String
+  data_consulta         DateTime
+  observacoes           String
   medico_responsavel_id Int
-  paciente_id Int
-  paciente_coluna Paciente @relation(fields: [paciente_id], references [id])
+  paciente_id           Int
+  paciente              Paciente @relation(fields: [paciente_id], references: [id])
 }
 
-// Tabela paciente
-model Paciente{
-  id Int @id @default(autoincrement())
-  nome String
-  cpf String
-  telefone Int
-  email String
+model Paciente {
+  id              Int          @id @default(autoincrement())
+  nome            String
+  cpf             String
+  telefone        Int
+  email           String
   data_nascimento DateTime
-  responsavel String?
-  sexo String
+  sexo            String
+  responsavel     String?
+  Prontuario      Prontuario[]
+  Consulta        Consulta[]
+  Exame           Exame[]
 }
 
-// Tabela exame
-model Exame{
-  id Int @id @default(autoincrement())
-  tipo_exame String
-  resultado_exame String
-  data_exame DateTime
+model Exame {
+  id           Int      @id @default(autoincrement())
+  tipo_exame   String
+  resultado    String
+  data_exame   DateTime
   link_arquivo String
-  observacoes String
-  paciente_id Int
-  paciente_coluna Paciente @relation(fields: [paciente_id], references [id])
+  observacoes  String
+  paciente_id  Int
+  paciente     Paciente @relation(fields: [paciente_id], references: [id])
 }
