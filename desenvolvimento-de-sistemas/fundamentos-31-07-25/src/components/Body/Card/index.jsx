@@ -1,6 +1,6 @@
-import React from "react"
+import styles from './card.module.css'
 
-const Card = ({nomne, idade, cidade}) => {
+const Card = ({nome, idade, cidade}) => {
     return(
         <div className={styles.card}>
             <h3>{nome}</h3>
