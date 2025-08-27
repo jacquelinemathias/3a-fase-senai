@@ -215,4 +215,99 @@ try {
 }
 })
 
+// Exames
+
+app.get('/exames', async (request, response) => {
+  try {
+      const exames = await prismaClient.exame.findMany({
+      });
+      return response.json(exames);
+  } catch (e) {
+      console.log(e);
+      response.status(500).json({ error: 'Erro ao buscar exames.' });
+  }
+});
+
+app.get('/exames/:id', async (request, response) => {
+  try {
+      const exame = await prismaClient.exame.findUnique({
+          where: {
+              id: Number(request.params.id),
+          }
+      });
+      if (!exame) return response.status(404).json("Exame não encontrado.");
+      return response.json(exame);
+  } catch (e) {
+      console.log(e);
+      response.status(500).json({ error: 'Erro ao buscar o exame.' });
+  }
+});
+
+app.post('/exames', async (req, res) => {
+  try {
+      const { body } = req;
+      const exame = await prismaClient.exame.create({
+          data: {
+              tipo_exame: body.tipo_exame,
+              resultado_exame: body.resultado,
+              data_exame: new Date(body.data_exame),
+              link_arquivo: body.link_arquivo,
+              observacoes: body.observacoes,
+              paciente_id: body.paciente_id, 
+          },
+      });
+      return res.status(201).json(exame);
+  } catch (error) {
+      console.error(error);
+      res.status(500).send("Erro ao cadastrar exame.");
+  }
+});
+
+app.put('/exames/:id', async (req, res) => {
+  try {
+      const { body, params } = req;
+      const exame = await prismaClient.exame.update({
+          where: { id: Number(params.id) },
+          data: {
+              tipo_exame: body.tipo_exame || undefined,
+              resultado: body.resultado || undefined,
+              data_exame: body.data_exame ? new Date(body.data_exame) : undefined,
+              link_arquivo: body.link_arquivo || undefined,
+              observacoes: body.observacoes || undefined,
+              paciente_id: body.paciente_id || undefined, 
+          },
+      });
+      res.status(200).json({
+          message: "Exame atualizado!",
+          data: exame,
+      });
+  } catch (error) {
+      if (error.code == "P2025") {
+          return res.status(404).send("Exame não encontrado.");
+      }
+      res.status(500).send("Erro ao atualizar exame.");
+  }
+});
+
+app.delete('/exames/:id', async (req, res) => {
+  const { params } = req;
+  try {
+      const exameDeletado = await prismaClient.exame.delete({
+          where: {
+              id: Number(params.id),
+          },
+      });
+      res.status(200).json({
+          message: "Exame deletado!",
+          data: exameDeletado,
+      });
+  } catch (error) {
+      console.log(error);
+      if (error.code == "P2025") {
+          return res.status(404).send("Exame não encontrado.");
+      }
+      res.status(500).send("Erro ao deletar exame.");
+  }
+});
+
 app.listen(3000, ()=> console.log("Api rodando"))
