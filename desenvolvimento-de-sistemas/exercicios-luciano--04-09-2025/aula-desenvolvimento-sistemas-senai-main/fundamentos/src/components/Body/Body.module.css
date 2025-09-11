@@ -1,0 +1,29 @@
+.body{
+    padding: 20px;
+    background: #f9f9f9;
+
+    .cardContainer{
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+}
+/* 
+.body .cardContainer h1{}
+.body .cardContainer h2{}
+
+.body{
+    .cardContainer{
+        h1{
+
+        }
+        h2{
+            a{
+                &:hover{
+
+                }
+            }
+        }
+
+    }
+} */
