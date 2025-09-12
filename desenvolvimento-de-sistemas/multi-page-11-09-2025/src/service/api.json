@@ -1,0 +1,19 @@
+{
+    "posts": [
+      { 
+        "id": "1",
+        "title": "a title",
+        "views": 100,
+        "image":"https://placehold.co/250x200",
+        "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae imperdiet libero. Etiam elementum nisi sodales, venenatis urna at, mollis augue. Nam feugiat dolor vel elit dapibus, a lobortis magna tristique. Integer orci nunc, consequat ac vehicula nec, pretium non ipsum. Sed purus justo, tempor ac pharetra et, placerat sed odio. Ut placerat nisi lectus, ut sagittis mauris mollis vel. Aliquam sollicitudin velit orci. Sed quis diam pellentesque, porttitor felis nec, ornare ex. Donec nec diam placerat libero fermentum elementum vitae vitae erat. Vestibulum mollis luctus nisi nec volutpat. Aliquam a accumsan diam. Proin porta nibh sed ornare convallis. Aliquam sodales molestie tellus, at dictum velit." 
+      },
+      {
+        "id": "2",
+        "title": "another title",
+        "views": 200,
+        "image":"https://placehold.co/250x200",
+        "description":"In aliquam egestas magna a fermentum. Aenean a malesuada nisi, vel blandit neque. Phasellus dictum quam leo, a imperdiet lorem auctor quis. Cras malesuada, augue at convallis egestas, neque erat lacinia eros, nec cursus turpis nunc eget tellus. Fusce tempus blandit cursus. Etiam at fermentum magna. Fusce vehicula tincidunt nisi eu convallis. Donec elit purus, ullamcorper eu nibh sed, blandit ultricies augue. Phasellus mollis quam sed justo pellentesque interdum. Sed porta consectetur vulputate. Aliquam quam leo, ultrices vitae orci eu, tincidunt ultricies magna. Duis lacinia ullamcorper orci, et cursus lacus viverra interdum."
+       }
+    ]
+    
+  }
