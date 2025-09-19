@@ -13,6 +13,7 @@ const PostDetail = () => {
 
     return(
         <div className="p-4">
+            <div image>{post.image}</div>
             <h1 className="text-xl font-bold">{post.title}</h1>
             <p>Views: {post.views}</p>
         </div>
